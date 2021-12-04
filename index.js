@@ -8,12 +8,12 @@ const passport = require('./passport/passport')
 var date=Date();//pour date de sed jour
 var d = new Date(1614184837465);//pour converture de milsegond en standard
 const unixTimeZero = Date.parse('01 Jan 1970 00:00:00 GMT');//pour de santdar aux millisegond
-var dat=Date.now("Wed Feb 24 2024 17:39:43")
- var jour=d.getDay()
-console.log(date);
-console.log(dat);
-console.log(d);
-console.log(jour);
+// var dat=Date.now("Wed Feb 24 2024 17:39:43")
+//  var jour=d.getDay()
+// console.log(date);
+// console.log(dat);
+// console.log(d);
+// console.log(jour);
 
 
 const app = express();
@@ -49,7 +49,8 @@ app.use('/email',emailApi);
 app.use("/group",groupApi);
 app.use("/admin",profApi);
 //port
-app.listen(5900,()=>console.log('Server listen on the port 1000')) ;
+const port = process.env.PORT || 5900;
+app.listen(port,()=>console.log(`Server listen on the port ${port}`)) ;
 
 /*function auth(req, res,next){
     const token = req.header('login');
