@@ -24,7 +24,7 @@ app.use(express.json({ extended: false, limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
 
 const connect = require('./dataBase/connect')
-const authApi=require('./routes/authApi');
+const authApi=require('./routes/authAPI');
 const todoApi=require('./routes/todoApi')
 const imProfil=require('./routes/userProfilApi')
 const evenement= require('./routes/evenemnetApi')
