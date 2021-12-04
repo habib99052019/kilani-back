@@ -21,37 +21,36 @@ const nodemailer = require('nodemailer');
 ///send sms
 router.get('/sendSMS', async (req, res) => {
     console.log("ha")
- var client=new twilio("ACb32e10df0293feb043befd525b7c2ac1","b334b83198459bb2013caa810ba63b13");
-client.messages
-.create({
-    username:"habib",
-   body: 'nouveaux notification',
-   from: '+13368928921',
-   to: '+21652028532'
- })
-.then(message => console.log(message)).
-catch(err => console.log(err))
-})
+    var client=new twilio("ACb32e10df0293feb043befd525b7c2ac1","b334b83198459bb2013caa810ba63b13");
+    client.messages.create({
+        username:"habib",
+        body: 'nouveaux notification',
+        from: '+13368928921',
+        to: '+21652028532'
+    }).then(message => {
+        console.log(message);
+        res.send({message: true});
+    }).
+    catch(err => {
+        console.log(err);
+        res.status(500).send({message: false});
+    })
+});
 ////f sms
 ///send email
 router.post('/send-mail', async(req, res) => {
-    console.log('hhhhh');
-    console.log(req.body.email)
 
     // email message options
     const mailOptions = {
         from:"nerolik60@gmail.com",
-        to:req.body.email ,
+        to: req.body.email ,
         subject: 'Tunis santé',
-        text:"mercie pour votre insciption sur nos site votre code : 4452",
-       
-        
+        text:"Merci pour votre insciption sur nos site votre code : 4452",
     };
     // email transport configuration
 
     var transport = await nodemailer.createTransport({
         service:"gmail",
-
         auth: {
             user: "nerolik60@gmail.com",
             pass: "5n5a171078"
@@ -61,12 +60,14 @@ router.post('/send-mail', async(req, res) => {
    await transport.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
+            res.status(500).send({message: false});
         } else {
             console.log('Email sent: ' + info.reponse);
             res.send({message: true});
         }
     });
 });
+
 ///sendFactur
 router.post('/send-mailF', async(req, res) => {
     console.log('url');
