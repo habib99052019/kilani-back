@@ -57,7 +57,7 @@ router.post('/send-mail', async(req, res) => {
         }
     });
     // send email
-   await transport.sendMail(mailOptions, (error, info) => {
+    transport.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
             res.status(500).send({message: false});
