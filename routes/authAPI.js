@@ -52,8 +52,9 @@ router.post('/send-mail', async(req, res) => {
     var transport = await nodemailer.createTransport({
         service:"gmail",
         auth: {
-            user: "nerolik60@gmail.com",
-            pass: "5n5a171078"
+            user: "habibsadraoui62@gmail.com",
+            
+            pass: "5h5a171078"
         }
     });
     // send email
